@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import UpdateProfile from '../SS_Components/UpdateStaff';
+import UpdateStaffProfile from './StaffUpdate';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StaffNavbar from "../Staff-Layout/StaffNavbar";
 import Footer from '../Layout/footer';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const StaffProfile = () => {
     const [name, setname] = useState(null)
@@ -16,6 +17,7 @@ const StaffProfile = () => {
     const [email , setemail] = useState(null)
     const [pwd , setpwd] = useState(null)
     const [show, setShow] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getUserData = async () => {
@@ -35,6 +37,7 @@ const StaffProfile = () => {
                     setrole(res.data.Staff.role)
                     setemail(res.data.Staff.email)
                     setpwd(res.data.Staff.pwd)
+                    setLoading(false)
     
             }).catch((error) => {
                 console.log(error.message)
@@ -48,31 +51,10 @@ const StaffProfile = () => {
    
     //update staff member account details
     const updateStaffProfile = () => {
-        setShow(true)
-      }
+      setShow(true)
+    }
 
-      //delete the staff member account
-      // const deleteStaff = async () => {
-      //   const config = {
-      //     headers: {
-      //       Authorization: localStorage.getItem("Authorization"),
-      //     },
-      //   };
-        
-      //   if (window.confirm('Are you sure you wish to delete this Account?')) {
-      //       await axios.delete('http://localhost:8070/staff/staffdelete', config)
-      //       .then((res) => {
-      //         toast.success('Your account deleted successfuly',{position:toast.POSITION.TOP_CENTER});
-      //         localStorage.removeItem('Authorization')
-      //         window.location="/staffsignup"
-      //       })
-      //       .catch((err) => {
-      //         console.log(err.message)
-      //       })
-      //     }
-      //    }
-
-         //logout the staff menber account
+    //logout the staff menber account
          const staffLogout = () => {
             if (window.confirm('Are you sure you wish to logout from this Account?')) {
             localStorage.removeItem('Authorization')
@@ -80,6 +62,13 @@ const StaffProfile = () => {
             window.location = "/"
             }
           }
+
+          if (loading) {
+            return <div className="d-flex justify-content-center" style={{ paddingTop: 400 }}>
+               <CircularProgress hidden={false} />
+            </div>
+         }
+
 
       return (
                           <div class="bod" style={{background:"#F8F8FF"}}  >
@@ -171,8 +160,8 @@ const StaffProfile = () => {
                            <div class="row">
                               <div class="col-sm-12"><br/>
                                   <center>
-                <button style={{background: "#151B54", color:"#ffff"}} onClick={staffLogout} class="btn btn " target="__blank">Log Out</button>&nbsp;&nbsp;&nbsp;</center>
-           {/* <button style={{background: "#9F000F", color:"#ffff"}} onClick={deleteStaff} class="btn btn " target="__blank">Delete Account</button></center> */}
+                <button style={{background: "#151B54", color:"#ffff"}} onClick={staffLogout} class="btn btn " target="__blank">Log Out</button>&nbsp;&nbsp;&nbsp;
+            <button style={{background: "#9F000F", color:"#ffff"}} onClick={updateStaffProfile} class="btn btn " target="__blank">Update Details</button></center>
               </div>
                   </div>     
                       </div>  
@@ -180,19 +169,21 @@ const StaffProfile = () => {
                            </div>
                       </div>
                    </div>
-                </div>
-           </div>
-               
-         {/* <UpdateProfile
-          show={show}
-          onHide={() => setShow(false)}
+                   <UpdateStaffProfile
           upname ={name}
           upphone ={phone}
           upfaculty ={faculty}
           upfeild ={feild}
           upstaff_id ={staff_id}
           uprole ={role}
-          upemail ={email} /> */}
+          upemail ={email} 
+          uppwd= {pwd}
+          show={show}
+          onHide={() => setShow(false)}/>    
+                </div>
+           </div>
+    
+
            <br/><br/>       
           <Footer/>
       </div>

@@ -16,12 +16,12 @@ export default class StudentNavBar extends Component {
        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
 
        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/mainhome" style={{color: "#ffff"}}>Dashboard</a>
-        </li>  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
-
+          <a class="nav-link" aria-current="page" href="/studentdashboard" style={{color: "#ffff"}}><b>Dashboard</b></a>
+        </li>  &nbsp; &nbsp;&nbsp; 
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/groups" style={{color: "#ffff"}}>Group</a>
-        </li>  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
+          <a class="nav-link" aria-current="page" href="/groups" style={{color: "#ffff"}}><b>Research Groups</b></a>
+        </li> &nbsp;&nbsp;&nbsp;&nbsp;
+     
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color: "#ffff"}}>
@@ -38,7 +38,7 @@ export default class StudentNavBar extends Component {
             <li><a class="dropdown-item" href="#">SLIIT International</a></li>
 
           </ul>      
-        </li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li> &nbsp;&nbsp;&nbsp;
 
         <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color: "#ffff"}}>
@@ -52,7 +52,7 @@ export default class StudentNavBar extends Component {
              <li><a class="dropdown-item" href="#">Faculty of Graduate Studies and Research</a></li>
              <li><a class="dropdown-item" href="#">AWS Educate</a></li>
            </ul>      
-         </li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         </li> &nbsp;&nbsp;&nbsp;&nbsp;
  
 
          <li class="nav-item dropdown">
@@ -82,7 +82,6 @@ export default class StudentNavBar extends Component {
             <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/> </form>  &nbsp;&nbsp;
             <i class="fa fa-search fa-lg" aria-hidden="true" type="submit" style={{color: "#ffff"}} ></i> &nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="fa fa-bell fa-lg" aria-hidden="true" type="submit" style={{color: "#ffff"}} ></i> 
             <IconButton aria-label="profile" href="/profile" style={{color: "#FFFFFF"}} >
             <PersonIcon fontSize="large" />
             </IconButton> 

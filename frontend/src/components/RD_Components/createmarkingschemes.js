@@ -6,6 +6,8 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
+import AdminNavBar from '../Layout/AdminNavBar';
+import Footer from '../Layout/footer';
 // export default class Createmarkingschemes extends Component {
 
     toast.configure() 
@@ -56,7 +58,8 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
     // render() {
         return (
             <div>
-          
+          <AdminNavBar/> 
+          <br/><br/>
              <div className="pt-3" align="center" >
              <div className="card shadow mb-8 w-50">
                <div className="card-header py-3">
@@ -110,7 +113,7 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
                       placeholder="Enter Inputs"
                       onChange={(e)=>{
                         setavarage(e.target.value)}}
-                    />
+                        required/>
                   </div>
 
 
@@ -124,7 +127,8 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
                       title="Please Enter Valid Inputs"
                       placeholder="Enter Inputs"
                       onChange={(e)=>{
-                        setpoor(e.target.value)}}/>
+                        setpoor(e.target.value)}}
+                        required/>
                   </div>
     
                   
@@ -136,9 +140,10 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
                       name="comment"
                       id="comment" 
                       title="Please Enter Valid Inputs"
-                      placeholder="Enter Inputs" 
+                      // placeholder="Enter Inputs" 
                       onChange={(e)=>{
-                        setcomment(e.target.value)}} />
+                        setcomment(e.target.value)}} 
+                       readOnly/>
                   </div>
     
                  
@@ -152,10 +157,10 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
                       // maxLength="10"
                       // pattern ="\d{10}"
                       title="Please Enter Valid Inputs"
-                      placeholder="Enter Marks"
+                      // placeholder="Enter Marks"
                       onChange={(e)=>{
                         setmarks(e.target.value)}}
-                    />
+                        readOnly/>
                   </div>
                   <div className="form-group">
                     <Button className="form-group" type="submit" style={{ marginTop: '5px', background: "#F75D59", width: 100 + "%" }} startIcon={<AddCommentRoundedIcon/>}>
@@ -170,6 +175,8 @@ import AddCommentRoundedIcon from '@mui/icons-material/AddCommentRounded';
             </div>
           </div>
         </div>
+        <br/><br/>
+        <Footer/>
      </div>
       )
 }

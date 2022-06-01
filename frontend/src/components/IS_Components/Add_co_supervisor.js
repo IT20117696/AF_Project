@@ -1,10 +1,16 @@
 import React,{Component} from 'react' ;
 import axios from "axios";
-import AdminNavBar from '../Layout/AdminNavBar';
- 
+import StudentNavBar from '../Home_Component/StudentNavBar';
+import Button from '@material-ui/core/Button';
+import Footer from '../Layout/footer';
+
 export default class Add_co_supervisor extends Component{
    constructor(props){  
        super(props);
+
+     this.onChangeGrpcoSupervisor = this.onChangeGrpcoSupervisor .bind(this);
+     this.onSubmit = this.onSubmit.bind(this);
+
        this.state={
            group_name:"",
            researchTopic:"",
@@ -14,91 +20,69 @@ export default class Add_co_supervisor extends Component{
            cosupervisors:[]
        }
     }
- 
   async componentDidMount(){
        const feild = this.props.match.params.feild
-      // console.log(feild)
        const id = this.props.match.params.id;
 
        await axios.get(`http://localhost:8070/regtopic/getcosupervisor/${feild}`).then((res)=>{
- 
        if(res.data.success){
                this.setState({
                 cosupervisors:res.data.staff
             });
             console.log (this.state.cosupervisors)
-       }
+           }
          })
        }
-    
-   handleInputChange = (e)=>{
-       const{name,value} = e.target;
-       this.setState({
-          ...this.state,
-          [name]:value
-       })
-    }
+       onChangeGrpcoSupervisor(e) {
+        this.setState({
+            grpcoSupervisor: e.target.value
+        })
+      }
  
    onSubmit = (e)=>{
        e.preventDefault();
        const id = this.props.match.params.id;
-       const{group_name,researchTopic,researchField,grpSupervisor,grpcoSupervisor} = this.state;
        const data = {
-           group_name:group_name,
-           researchTopic:researchTopic,
-           researchField:researchField,
-           grpSupervisor:grpSupervisor,
-           grpcoSupervisor:grpcoSupervisor,
+           
+           grpcoSupervisor:this.state.grpcoSupervisor,
        }
- 
-       axios.post(`http://localhost:8070/regtopic/addcoSupervisor/${id}`,data).then((res)=>{ 
-       if(res.data.success){
-           this.setState({
-               group_name:"",
-               researchTopic:"" ,
-               researchField:"" ,
-               grpSupervisor:"",
-               grpcoSupervisor:"",
-          })
-          alert("Co-Supervisor added");
-          window.location.href="/regtopic/displaycosupervisors"
-     }   
+           
+            axios.post(`http://localhost:8070/regtopic/addcoSupervisor/${id}`,data).then((res)=>{ 
+            console.log(res.data)
+            alert("Co-Supervisor added");
+            window.location.href="/regtopic/displaycosupervisors"
+      
    })
    .catch((e)=>{
    });
 }
- render(){
+
+render(){
 return(
 <div>
-<AdminNavBar/>
-  <br/><br/>   
-       <div className='col-md-8 mt-4 mx-auto'>
-           <h1 className='h3 mb-3 font-weight-normal'>ADD CO-SUPERVISOR TO STUDENT GROUP</h1>
-             <form className='needs-validation' noValidate>
-                 <div className='form-group' style={{marginBottom:'10px'}}>
-                    <label style={{marginBottom:'5px'}}>Co-Supervisor</label>
-                      <input
-                         type="text"
-                           className='form-control'
-                              name='grpcoSupervisor'
-                                placeholder='Enter Co-Supervisor Name'
-                                    value={this.state.grpcoSupervisor}
-                              onChange={this.handleInputChange}>
-                          </input>
-                      </div>
-                 <button
-             className='btn btn-warning'
-         type='add'
-      tyle={{marginTop:'15px'}}
-          onClick={this.onSubmit}>
-             <i className='fa fa-plus-circle'></i> &nbsp; ADD
-                </button>
-                   </form>   
-                       </div>
-                       <div>
-              <br/><br/>
-               <h3 align="center" style={{fontSize:'30px',fontFamily:"Times New Roman"}}>
-            <b><u> Co-Supervisors </u></b></h3><br/>
+<StudentNavBar/>
+     <br/><br/><br/>
+        <div align="center">
+           <div className="card-header" style={{width:"820px",background:"#B7CEEC"}}><br/><br/>
+              <h3 align="center">
+                <b><u>ADD CO-SUPERVISOR TO STUDENT GROUP</u></b></h3><br/>
+            <form onSubmit={this.onSubmit} className="text-color">
+        <div className="form-group">
+    <div align="left"><br/> 
+        <label style={{marginBottom:'2px'}}><b>Co-Supervisor</b></label>
+            <input type="userInput" required className="form-control mt-2" placeholder="Enter Co-Supervisor Name" value={this.state.grpcoSupervisor}
+                 onChange={this.onChangeGrpcoSupervisor}/>
+                    </div></div><br/><br/>
+                 <Button variant="contained" className="w-6" style={{background: "#151B54", width: 30+"%",color:"white"}}
+            disableElevation type="submit">Add Co-Supervisor</Button>
+        </form><br/>
+          </div>
+              </div>
+                 <div>
+                     <br/>
+                      <br/>
+                   <h3 align="center" style={{fontSize:'30px',fontFamily:"Times New Roman"}}>
+               <b><u> Co-Supervisors List</u></b></h3><br/>
            <div className='container'>  
        <table className = "table table-hover">
           <thead>
@@ -108,16 +92,16 @@ return(
                        <th scope='col'>Role</th>
                          <th scope='col'>Name</th>
                            <th scope='col'>Research Feild</th>
-                         </tr>
-                    </thead>
+                            </tr>
+                        </thead>
                     <tbody>
-                        {this.state.cosupervisors.map((cosupervisors,index)=>(
-                            <tr key={index}>    
-                                <th scope='row'>{index + 1}</th>
-                                <td>{cosupervisors.staff_id}</td>
-                                    <td>{cosupervisors.role}</td>
-                                        <td>{cosupervisors.name}</td>
-                                    <td>{cosupervisors.feild}</td>
+                {this.state.cosupervisors.map((cosupervisors,index)=>(
+             <tr key={index}>    
+                <th scope='row'>{index + 1}</th>
+                   <td>{cosupervisors.staff_id}</td>
+                       <td>{cosupervisors.role}</td>
+                           <td>{cosupervisors.name}</td>
+                               <td>{cosupervisors.feild}</td>
                                     </tr>
                                     )
                                   )}
@@ -125,7 +109,8 @@ return(
                        </table>
                     </div>
                  </div>
-                          </div>
+                 <Footer/>
+           </div>
        )
    }
 }

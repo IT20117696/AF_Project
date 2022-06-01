@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AdminNavBar from '../Layout/AdminNavBar';
+import BackendHomeNavBar from '../Layout/BackendHomeNavBar';
 import Footer from '../Layout/footer';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import UpdateSliitProfile from './update-admin'
 
 const AdminProfile = () => {
     const [name, setname] = useState(null)
@@ -12,6 +13,7 @@ const AdminProfile = () => {
     const [sliitid, setsliitid] = useState(null)
     const [email, setemail] = useState(null)
     const [show, setShow] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getUserData = async () => {
@@ -28,6 +30,7 @@ const AdminProfile = () => {
                   setsliitid(res.data.Admin.sliitid)
                   setemail(res.data.Admin.email)
                   setShow(res.data.Admin.show)
+                  setLoading(false)
 
                 }).catch((error) => {
                     console.log(error.message)
@@ -38,6 +41,12 @@ const AdminProfile = () => {
           }
           getUserData()
         }, [])
+
+
+ //update admin details
+ const updateUserProfile = () => {
+    setShow(true)
+  }
 
  //delete the staff member account
  const deleteAdmin = async () => {
@@ -69,11 +78,17 @@ const AdminProfile = () => {
       }
    }
 
+   if (loading) {
+    return <div className="d-flex justify-content-center" style={{ paddingTop: 400 }}>
+       <CircularProgress hidden={false} />
+    </div>
+ }
+
+
           return (
-                          <div class="bod" style={{background:"#FFFFF7"}}>
-                       <AdminNavBar/>
-                   <br/><br/><br/><br/>
-               <h3 align="center"><b><u>Admin Profile Details</u></b></h3>  <br/><br/>     
+                      <div class="bod" style={{background:"#F8F8FF"}}>
+                   <BackendHomeNavBar/>
+               <br/><br/><br/><br/><br/>       
            <div class="container">
        <div class="main-body">
    <div class="row gutters-sm">
@@ -94,37 +109,37 @@ const AdminProfile = () => {
             <div class="card-body">
                 <div class="row">
                    <div class="col-sm-3">
-                <h6 class="mb-0 "><b>Full Name </b></h6>
+                <h6 class="mb-0 "><b>Full Name</b></h6>
             </div>
         <div class="col-sm-9 text-secondary" >
-    <b>{name}</b> 
+     {name}
  </div>
      </div>
          <hr/>
             <div class="row">
                <div class="col-sm-3">
-                  <h6 class="mb-0"><b>Phone Number </b></h6>
+                  <h6 class="mb-0"><b>Phone Number</b></h6>
               </div>
           <div class="col-sm-9 text-secondary">
-       <b>{phone}</b>
+       {phone}
     </div>
 </div>
      <hr/>
           <div class="row">
                <div class="col-sm-3">
-                    <h6 class="mb-0"><b>SLIIT ID </b></h6>
+                    <h6 class="mb-0"><b>SLIIT ID</b></h6>
                          </div>
                       <div class="col-sm-9 text-secondary">
-                   <b> {sliitid}</b>
+                 {sliitid}
               </div>
          </div>
       <hr/>
          <div class="row">
              <div class="col-sm-3">
-                  <h6 class="mb-0"><b>Email  </b></h6>
+                  <h6 class="mb-0"><b>Email</b></h6>
                       </div>
                           <div class="col-sm-9 text-secondary">
-                       <b>{email}</b>
+                       {email}
                   </div>
                </div>
             <hr/> 
@@ -134,7 +149,7 @@ const AdminProfile = () => {
                       <div class="col-sm-12"><br/>
                           <center>
                  <button style={{background: "#151B54", color:"#ffff"}} onClick={adminLogout} class="btn btn " target="__blank">Log Out</button>&nbsp;&nbsp;&nbsp;
-           <button style={{background: "#9F000F", color:"#ffff"}} onClick={deleteAdmin} class="btn btn " target="__blank">Delete Account</button></center>
+                 <button style={{background: "#9F000F", color:"#ffff"}} onClick={updateUserProfile} class="btn btn " target="__blank">Update Details</button></center>
        </div>
            </div>     
                </div>  
@@ -142,6 +157,14 @@ const AdminProfile = () => {
                         </div>
                       </div>
                  </div>
+<UpdateSliitProfile
+     upname= {name}
+     upphone= {phone}
+     upsliitid= {sliitid}
+     upemail= {email}
+     show={show}
+     onHide={() => setShow(false)}
+         />
              </div>
          </div>
      <br/><br/><br/><br/><br/><br/>       

@@ -2,8 +2,8 @@ import axios from "axios";
 import React,{Component} from 'react' ;
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AdminNavBar from '../Layout/AdminNavBar';
+import StudentNavBar from '../Home_Component/StudentNavBar';
+import Footer from '../Layout/footer';
  
  
 export default class Display_supervisors extends Component{
@@ -35,7 +35,7 @@ export default class Display_supervisors extends Component{
     render(){
        return(   
            <div>
-              <AdminNavBar/>  <br/><br/> <br/>
+              <StudentNavBar/>  <br/><br/> <br/>
                <h3 align="center" style={{fontSize:'35px',fontFamily:"Times New Roman"}}><b><u>Add Supervisor </u></b></h3><br/><br/>
                  <div className='container'> 
                    <table class="table">
@@ -70,7 +70,9 @@ export default class Display_supervisors extends Component{
                              ))}
                       </tbody>
                         </table>
-                          </div>    
-                            </div> 
+                         </div><br/>
+                         </div> 
+                
+                    
                               )}
                        }

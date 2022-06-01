@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MainHome from "./mainhome";
+import StudentNavBar from '../Home_Component/StudentNavBar';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
 
         return (
             <div className="bod">
-            <MainHome/><br/><br/>
+            <StudentNavBar/><br/><br/>
             <div className="container">
             <Card sx={{ maxWidth: 345 }}
                     onClick={() => handleClick()}
