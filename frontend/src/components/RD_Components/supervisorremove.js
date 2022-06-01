@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Footer from '../Layout/footer';
+import BackendHomeNavBar from '../Layout/BackendHomeNavBar';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
@@ -47,6 +48,7 @@ onDelete = (supervisorID) => {
  render() {
     return ( 
                         <div>
+                          <BackendHomeNavBar/>
                      <br/><br/>
                   <h3 align="center" style={{fontSize:'30px',fontFamily:"Times New Roman"}}>
               <b><u>All Supervisor Details </u></b></h3><br/>
@@ -84,6 +86,9 @@ onDelete = (supervisorID) => {
                       </tbody>     
                          </table>
                             </div>
+                            <br/><br/><br/><br/><br/><br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <Footer/>
                               </div>
     )
   }

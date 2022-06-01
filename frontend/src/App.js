@@ -1,14 +1,12 @@
 import React from 'react';
-import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
-import {toast} from 'react-toastify';
 
+
+
+import React, { Component } from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Profile from './components/AA_Components/student-profile';
-import MainHome from './components/AA_Components/mainhome';
 import Faculties from './components/AA_Components/faculties';
-
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import DisplayStudentgroups from './components/SS_Components/Display_studentgroups';
 import Add_panel_member from './components/SS_Components/Add_panel_member'
 import StaffLogin from './components/SS_Components/staff-login';
@@ -33,18 +31,20 @@ import Supervisorremove from './components/RD_Components/supervisorremove';
 import CoSupervisorremove from './components/RD_Components/cosupervisorremove';
 import Studentsremove from './components/RD_Components/studentsremove';
 import presantationpdfupload from './components/RD_Components/presantationpdfupload';
+import Evaluate from './components/RD_Components/evaluate';
+import Evaluateedit from './components/RD_Components/evaluateedit';
+import GroupRegistration from './components/AA_Components/student-group-name-registration';
+import Add_Group_Members from './components/AA_Components/group-members-reg';
+import Groupss from './components/AA_Components/student.groups';
+import HomePage from './components/AA_Components/homepage';
 import PanelMembers from './components/SS_Components/PanelMembers';
-
-
 import AddResearchTopic from './components/IS_Components/Add_research_topic';
 import Display_researchtopics from './components/IS_Components/Display_researchtopics';
 import AddSupervisors from './components/IS_Components/Add_supervisor';
 import Display_supervisors from './components/IS_Components/Display_supervisors';
 import AddCoSupervisors from './components/IS_Components/Add_co_supervisor';
 import Display_co_supervisors from './components/IS_Components/Display_co_supervisors';
-//import Supervisors from './components/IS_Components/Supervisors';
 import DocUpload from './components/IS_Components/DocUpload';
-
 import StudentDashboard from './components/SS_Components/StudentDashboard';
 import StudentHomePage from './components/SS_Components/StudentHomePage';
 import Groups from './components/SS_Components/Groups';
@@ -52,29 +52,21 @@ import PDFUpload from './components/SS_Components/PDFUpload';
 import PDFDisplay from './components/SS_Components/PDFDisplay';
 import SupervisorAcceptTopic from './components/SS_Components/SupervisorAcceptTopic';
 import CoSupervisorAcceptTopic from './components/SS_Components/CoSupervisorAcceptTopic';
+import AdminViewStaff from './components/SS_Components/AdminViewStaff';
+import Chatdialog from './components/chat/Chatdialog';
 
-function App() {
-  return (
-   <Router>
-   <Switch>
-    {/* <Route path = "/" element={<StudentLogin/>}/>
-    <Route path = "/signup" element={<Signup/>}/> 
-    <Route path = "/addpanelmember" element={<Add_panel_member/>}/>
-    <Route path = "/edit_panelmembers" element= {Edit_panem_member}/>
-    <Route path = "/" element= {<DisplayStudentgroups/>}/> */}
-    {/* <Route path = "/add" element={<Adminregistration/>}/> 
-    <Route path = "/login" element={<AdminLogin/>}/>  
-    <Route path = "/adminpage" element={<Adminpage/>}/>   */}
-    {/* <Route path = "/homemarkingschemes" element={<Homemarkingschemes/>}/> 
-    <Route path = "/createmarkingadd" element={<Createmarkingschemes/>}/>
-    <Route path = "/createmarkingedit/:createmarkingID" element={<Editmarkingschemes/>}/>
-    <Route path = "/createmarking/:createmarkingID" element={<Markingschemesdetails/>}/>
-    */}
-     
-
-     <Route path = "/aa" component={StudentHomePage} exact/>
-   
-     <div>  
+export default class App extends Component {
+ 
+  render() {
+    return (
+      
+  <Router>
+    <Switch>
+{/* // function App() {
+//   return (
+//    <Router>
+//    <Switch> */}
+     <Route path = "/" component={StudentHomePage} exact/>
      <Route path = "/staff" component={BackendHomePage}/>
      <Route path = "/stafflogin" component={StaffLogin}/>
      <Route path = "/staffsignup" component={StaffSignup}/>
@@ -83,22 +75,24 @@ function App() {
      <Route path = "/studentgroups/:id" component={Add_panel_member}/>
      <Route path = "/topic/displayresearchtopic" component={ResearchTopic}/>
      <Route path = "/staffprofile" component={StaffProfile}/>
-     <Route path = "/displayStaffRole" component={AdminViewStaff}/>
      <Route path = "/panelmember" component={PanelMembers}/>
      <Route path = "/studentdashboard" component={StudentDashboard}/>
      <Route path = "/groups" component={Groups}/>
      <Route path = "/pdfupload" component={PDFUpload}/>
-     <Route path = "/pdfdisplay" component={PDFDisplay}/>
-     
+     <Route path = "/pdfdisplay" component={PDFDisplay}/> 
      <Route path = "/requestsupervisor" component={SupervisorAcceptTopic}/>
      <Route path = "/requestcosupervisor" component={CoSupervisorAcceptTopic}/>
-     
-     <Route path = "/signin" component={StudentLogin}/>
+     <Route path = "/displayStaffRole" component={AdminViewStaff}/>
+  
+
+    <Route path = "/signin" component={StudentLogin}/>
      <Route path = "/signup" component={Signup}/>
      <Route path = "/profile" component={Profile}/>
-     <Route path = "/mainhome" component={MainHome}/>
      <Route path = "/faculties" component={Faculties}/>
-
+     <Route path= "/groupReg" component={GroupRegistration}/>
+     <Route path= "/display/:id" component={Add_Group_Members}/>
+     <Route path= "/groupss" component={Groupss}/>
+     <Route path = "/homepage" component={HomePage}/>
      <Route path = "/adminsignup" component={Adminregistration}/> 
      <Route path = "/adminsignin" component={AdminLogin}/>  
      <Route path = "/admindashboard" component={Admindashboard}/>  
@@ -113,7 +107,9 @@ function App() {
     <Route path = "/getcosupervisor" component={CoSupervisorremove}/>
     <Route path = "/getstudent" component={Studentsremove}/>
     <Route path = "/presantation" component={presantationpdfupload}/>
-    
+    <Route path = "/evaluate" component={Evaluate}/>
+    <Route path = "/evaluateedit/:createmarkingID" component={Evaluateedit}/>
+    <Route path = "/chatdialog" component={Chatdialog}/>
 
 
 
@@ -131,10 +127,12 @@ function App() {
     <Route path = "/regtopic/getcosupervisor/:feild" component={AddCoSupervisors}/>
     <Route path = "/document/submitdoc" component={DocUpload}/> 
    
-   </div>  
-   </Switch>
-   </Router>
-  );
-}
 
-export default App;
+     
+    
+   
+            </Switch>
+        </Router>
+    )
+  }
+}

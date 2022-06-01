@@ -23,12 +23,12 @@ poor:{
 
 comment:{
     type : String,
-    required:true,
+    required:false,
 },
 
 marks:{
     type : String,
-    required:true,
+    required:false,
 },
 
 });

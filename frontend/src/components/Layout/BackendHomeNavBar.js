@@ -15,7 +15,7 @@ export default class BackendHomeNavBar extends Component {
        <div class="container">  
        <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
-
+       <a aria-expanded="false" style={{color: "#FF8C00",fontFamily:"initial",fontSize:"35px"}}><b>STAFF </b> </a>&nbsp;&nbsp;&nbsp;
      
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/topic/displayresearchtopic" style={{color: "#ffff"}}></a>

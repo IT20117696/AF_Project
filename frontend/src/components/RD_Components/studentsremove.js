@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import SearchSharpIcon from '@material-ui/icons/SearchSharp';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../Layout/footer';
+import BackendHomeNavBar from '../Layout/BackendHomeNavBar';
 toast.configure()
 
 export default class Studentsremove extends Component {
@@ -47,14 +49,48 @@ onDelete = (studentID) => {
     })
   }
 }
+filterData(studentsremove, searchKey) {
+
+  const result = studentsremove.filter((stud) =>
+    stud.name.toLowerCase().includes(searchKey) ||
+    stud.student_id.toLowerCase().includes(searchKey) 
+    
+    
+  )
+  this.setState({studentsremove: result })
+}
+
+handleSearchArea = (e) => {
+
+  const searchKey = e.currentTarget.value;
+
+  axios.get("http://localhost:8070/usersremove/getstudent").then(res => {
+    if (res.data.success) {
+
+      this.filterData(res.data.existingstudent,searchKey)
+
+    }
+
+  });
+}
 
 
  render() {
     return ( 
                         <div>
+                          <BackendHomeNavBar/>
                      <br/><br/>
                   <h3 align="center" style={{fontSize:'30px',fontFamily:"Times New Roman"}}>
               <b><u>All Students Details </u></b></h3><br/>
+              <div className="col-md-3" >
+            {/* <input type="text" className="form-control" style={{marginBottom:'2px'}} onChange={this.handleSearchArea} placeholder="Search Theater or Booking Date"/> */}
+
+            <div className="col-lg-9 mt-2 mb-2">
+                <input className="form-control" type="search"
+                  placeholder="Serach" name="searchQuery" startIcon={< SearchSharpIcon />} onChange={this.handleSearchArea} >
+                </input></div>
+
+               </div><br/>
            <div className='container'>  
        <table className = "table table-hover">
           <thead>
@@ -95,6 +131,9 @@ onDelete = (studentID) => {
                       </tbody>     
                          </table>
                             </div>
+                            <br/><br/><br/><br/><br/><br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <Footer/>
                               </div>
     )
   }

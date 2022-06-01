@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import StaffNavbar from "../Staff-Layout/StaffNavbar";
 import Footer from '../Layout/footer';
 
+
+const Evaluate = () => {
+    window.location = `/evaluate`
+  }
+  
+
+
 export default class Staff_Dashboard extends Component {
     render(){
         return(
@@ -18,7 +25,7 @@ export default class Staff_Dashboard extends Component {
                             src="https://www.sliit.lk/wp-content/uploads/2017/12/Business-Analytics.jpg"
                             class="card-img-top"
                             height="280px"
-                            alt="..."/>
+                            alt="..." onClick={Evaluate}/>
                         </div>
                     </div>
                  

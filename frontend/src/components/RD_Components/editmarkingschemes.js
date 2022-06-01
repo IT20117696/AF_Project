@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../Layout/footer';
+import AdminNavBar from '../Layout/AdminNavBar';
 
 toast.configure()
 
@@ -99,6 +101,8 @@ componentDidMount(){
   render() {
     return (
       <div>
+        <AdminNavBar/> 
+        <br/><br/>
       <div className="pt-3" align="center" >
        <div className="card shadow mb-8 w-50">
          <div className="card-header py-3">
@@ -138,14 +142,14 @@ componentDidMount(){
           
            <div className ="form-group" style={{marginBottom:'15px'}}>
               <label style={{marginBottom:'5px'}}>Comment</label>
-              <input type="text" className="form-control" name="comment" placeholder="Enter Details" value={this.state.comment}
-             onChange={this.handleInputChange}/>
+              <input type="text" className="form-control" name="comment"  value={this.state.comment}
+             onChange={this.handleInputChange}readOnly/>
            </div>
 
            <div className ="form-group" style={{marginBottom:'15px'}}>
               <label style={{marginBottom:'5px'}}>Marks</label>
-              <input type="text" className="form-control" name="marks" placeholder="Enter Details" value={this.state.marks}
-             onChange={this.handleInputChange}/>
+              <input type="text" className="form-control" name="marks"  value={this.state.marks}
+             onChange={this.handleInputChange}readOnly/>
            </div>
 <div>
       <Button className="form-group" type="submit"style={{background: "#F75D59", width: 100+"%"}} startIcon={< CheckCircleSharpIcon/>}  onClick={this.onSubmit}> 
@@ -158,6 +162,8 @@ componentDidMount(){
      </div>
      </div>
      </div>
+     <br/><br/><br/><br/>
+     <Footer/>
      </div>
      
 

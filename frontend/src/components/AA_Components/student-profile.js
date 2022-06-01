@@ -9,7 +9,7 @@ import UpdateProfile from './student-update'
 
 
 
-toast.configure()
+// toast.configure()
 
 const Profile = () => {
     const [name, setname] = useState("");
@@ -63,7 +63,7 @@ const Profile = () => {
 
     const studentLogout = () => {
         if (window.confirm('Are you sure you wish to logout from this Account?')) {
-      toast.success('Log out successfuly',{position:toast.POSITION.TOP_CENTER});
+      // toast.success('Log out successfuly',{position:toast.POSITION.TOP_CENTER});
       localStorage.removeItem('role')
       localStorage.removeItem('Authorization')
       window.location = "/signin"

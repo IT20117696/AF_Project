@@ -2,8 +2,8 @@ import React,{useState} from "react";
 import axios from "axios";
 import AdminNavBar from '../Layout/AdminNavBar';
 import Footer from '../Layout/footer';
-import { getDownloadURL,getStorage, ref,uploadBytesResumable, } from "firebase/storage";import app from "../../FireBase";
-// import PDFDisplay from "./PDFDisplay";
+import { getDownloadURL,getStorage, ref,uploadBytesResumable, } from "firebase/storage";
+import app from "../../FireBase";
 
 export default function PDFUpload(){
     const [pdfupload, setpdfupload] = useState("");
@@ -48,7 +48,13 @@ export default function PDFUpload(){
             let new_pdfupload = {
                 pdfupload:pdfupload
             }
-            axios.post("http://localhost:8070/assignment/assignmentgroups",new_pdfupload)
+
+            const config = {
+                headers: {
+                  Authorization: localStorage.getItem("Authorization"),
+                },
+            };
+            axios.post("http://localhost:8070/assignment/assignmentgroups",new_pdfupload,config)
             .then(()=>{
                 alert("Upload Success")
                 window.location = "/admindashboard"

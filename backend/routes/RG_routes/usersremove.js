@@ -23,6 +23,7 @@ router.get("/getpanelmember",async(req,res)=>{
   }
   })
 
+ 
 
 //Delete pannel members details
 
@@ -75,7 +76,7 @@ router.route('/supervisordelete/:supervisorID').delete((req,res)=>{
  });
 
 
-//Get Co-Supervisor Details
+// Get Co-Supervisor Details
 
 router.get("/getcosupervisor",async(req,res)=>{
     try{
@@ -94,6 +95,7 @@ router.get("/getcosupervisor",async(req,res)=>{
     }
     })
 
+    
 //Delete Supervisor details
 router.route('/cosupervisordelete/:cosupervisorID').delete((req,res)=>{
     staff.findByIdAndRemove(req.params.cosupervisorID).exec((err,deletecosupervisor)=>{
